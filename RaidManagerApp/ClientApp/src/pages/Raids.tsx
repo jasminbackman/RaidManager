@@ -8,6 +8,7 @@ const Raids = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     return (
         <RaidDispatch.Provider value={dispatch}>
+            test
         </RaidDispatch.Provider>
     );
 };

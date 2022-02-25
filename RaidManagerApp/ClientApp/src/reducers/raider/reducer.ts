@@ -7,9 +7,9 @@ export const initialState: Map<string, any> = Map({
 });
 
 const ActionTypes = {
-    LOAD: "RAIDS:LOAD",
-    LOAD_SUCCESS: "RAIDS:LOAD_SUCCESS",
-    LOAD_FAIL: "RAIDS:LOAD_FAIL"
+    LOAD: "RAIDERS:LOAD",
+    LOAD_SUCCESS: "RAIDERS:LOAD_SUCCESS",
+    LOAD_FAIL: "RAIDERS:LOAD_FAIL"
 };
 
 type Actions =
@@ -36,15 +36,15 @@ const reducer = (state: Map<string, any> = initialState, action: Actions) => {
     }
 };
 
-export const loadRaids = (): Actions => {
+export const loadRaiders = (): Actions => {
     return { type: ActionTypes.LOAD };
 }
 
-export const loadRaidsSuccess = (payload: Raid[]): Actions => {
+export const loadRaidersSuccess = (payload: Raid[]): Actions => {
     return { type: ActionTypes.LOAD_SUCCESS, payload };
 }
 
-export const loadRaidsFail = (error: string): Actions => {
+export const loadRaidersFail = (error: string): Actions => {
     return { type: ActionTypes.LOAD_FAIL, payload: error };
 }
 

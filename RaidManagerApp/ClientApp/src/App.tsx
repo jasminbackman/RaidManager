@@ -1,9 +1,9 @@
+import { createTheme, Grid, ThemeProvider } from '@mui/material';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import NoMatch from "./pages/NoMatch";
 import Layout from "./pages/Layout";
-import { createTheme, Grid, ThemeProvider } from '@mui/material';
-import NavBar from './components/navigation/NavBar';
+import NoMatch from "./pages/NoMatch";
+import Raiders from "./pages/Raiders";
 import Raids from "./pages/Raids";
 
 const darkTheme = createTheme({
@@ -16,27 +16,16 @@ const darkTheme = createTheme({
 });
 
 const App = () => {
-  const links: { name: string, url: string }[] = [
-    { name: "Raiders", url: "raiders"}, 
-    { name: "Raids", url: "raids" }, 
-    { name: "Attendance", url: "attendance" }
-  ];
-console.log(process.env.REACT_APP_BASE_URL);
   return (
     <div className="App">
       <ThemeProvider theme={darkTheme}>
-        <Grid container>
-
-          <NavBar pages={links} />
-
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route path="raids" element={<Raids />}/>
-            </Route>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="raids" element={<Raids />}/>
+            <Route path="raiders" element={<Raiders />}/>
             <Route path="*" element={<NoMatch />} />
-          </Routes>
-
-        </Grid>
+          </Route>
+        </Routes>
       </ThemeProvider>
     </div>
   );

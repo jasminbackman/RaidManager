@@ -13,6 +13,16 @@ builder.Services.AddDbContext<RaidManagerContext>(x => x.UseSqlServer(connection
 
 builder.Services.AddScoped<IRaidService, RaidService>();
 
+builder.Services.AddSwaggerDocument(settings =>
+{
+    settings.PostProcess = document =>
+    {
+        document.Info.Version = "v1";
+        document.Info.Title = "Raid Manager API";
+        document.Info.Description = "Raid Manager API";
+    };
+});
+
 #if DEBUG
 using (var serviceProvider = builder.Services.BuildServiceProvider())
 {
@@ -29,7 +39,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseOpenApi();
+    app.UseSwaggerUi3();
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
